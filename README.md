@@ -53,11 +53,11 @@ The prototype demonstrates thematic comparison and the evidence overview on a cu
 | Policy topic selection (options read from the data) | BR-01 |
 | Filters for theme, project, evidence type and keyword, with reset | FR-01, FR-02 |
 | Evidence overview counts for the current filtered selection | BR-02 |
-| Findings grouped by theme, each with project, topic, theme, evidence type, caveats and source | FR-03, FR-04, FR-05, FR-06 |
-| Side-by-side comparison of findings on a theme and a theme-by-project coverage matrix | FR-03 |
-| Source reference table; untraceable records are excluded and reported | FR-04, DR-01, DR-02 |
+| Comparison view: one foldable section per theme, with each project's findings side by side (finding, evidence type, caveats, source) | FR-03, FR-04, FR-05, FR-06 |
+| Coverage overview of findings per theme and project | FR-03 |
+| Source document and reference on every finding; untraceable records are excluded and reported | FR-04, DR-01, DR-02 |
 | CSV export of the filtered findings | FR-07 |
-| Evidence limitations and description of the human review step | BR-02, FR-05 |
+| Synthetic-data notice in the sidebar and footer; no recommendations generated | BR-02 |
 
 The visual style follows common public-sector design conventions (institutional blue with a yellow accent, Arial typography, flat panels). It deliberately uses no official logos, emblems or Commission branding.
 

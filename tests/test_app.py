@@ -36,8 +36,8 @@ def test_second_topic_updates_counts_and_findings():
     assert not at.exception
     assert _metrics(at) == ["6", "15", "4"]
     page = _html(at)
-    assert "SYN-F020" in page
-    assert "SYN-F001" not in page
+    assert "SYN-SRC-P09-01" in page
+    assert "SYN-SRC-P01-01" not in page
 
 
 def test_theme_filter_updates_counts_and_reset_restores_them():
@@ -57,6 +57,18 @@ def test_switching_topic_drops_filters_that_no_longer_apply():
     assert not at.exception
     assert at.multiselect(key="themes").value == []
     assert _metrics(at) == ["6", "15", "4"]
+
+
+def test_one_foldable_section_per_theme_with_first_open():
+    at = _run_app()
+    theme_sections = [e for e in at.expander if "finding" in e.label and "Coverage" not in e.label]
+    assert [e.label.split("**")[1] for e in theme_sections] == [
+        "Flood resilience",
+        "Green infrastructure",
+        "Implementation and governance",
+        "Urban heat mitigation",
+    ]
+    assert [e.proto.expanded for e in theme_sections] == [True, False, False, False]
 
 
 def test_empty_filter_result_shows_warning():
