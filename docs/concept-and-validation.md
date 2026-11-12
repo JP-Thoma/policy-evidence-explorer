@@ -24,8 +24,8 @@ Policy question
 | **1. Policy question** | The officer defines the topic and scope of the briefing. | **Partly.** The officer selects a predefined topic and optional themes. Free-text policy questions are not supported. |
 | **2. Identification of relevant sources** | Relevant projects, deliverables and publications are identified (e.g. from programme databases and repositories). | **Assumed.** The prototype starts from a small curated set of synthetic projects. Source identification is not performed. |
 | **3. Evidence extraction and organisation** | Individual findings, their evidence type and limitations are extracted from sources and recorded in a consistent structure. | **Assumed.** Findings are pre-entered in `data/findings.csv`. The prototype does **not** extract findings from raw project reports. |
-| **4. Thematic comparison** | Findings are grouped by theme and compared across projects to show consistencies, tensions and gaps. | **Yes.** Theme grouping, side-by-side comparison and a theme-by-project coverage matrix. |
-| **5. Evidence overview** | A structured overview of findings, counts, caveats and sources for the current selection. | **Yes.** Overview counts, finding cards, tables and CSV export. |
+| **4. Thematic comparison** | Findings are grouped by theme and compared across projects to show consistencies, tensions and gaps. | **Yes.** Foldable theme sections with project findings side by side, and a theme-by-project coverage overview. |
+| **5. Evidence overview** | A structured overview of findings, counts, caveats and sources for the current selection. | **Yes.** Overview counts and distributions, project panels per theme, a table view and CSV export. |
 | **6. Policy officer review** | The officer verifies sources, considers caveats, consults experts and decides what to use. | **Described only.** The review step is explained on screen but not supported by a workflow. |
 
 The key distinction is that the prototype demonstrates steps 4 and 5 on a **curated, structured dataset**. Steps 2 and 3 are where most of the real effort and risk lie, and they would be central to a pilot.
