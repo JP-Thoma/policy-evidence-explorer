@@ -1,0 +1,25 @@
+[client]
+toolbarMode = "viewer"
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#004494"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f3f6fc"
+textColor = "#262b38"
+linkColor = "#004494"
+font = "Arial, Helvetica, sans-serif"
+headingFont = "Arial, Helvetica, sans-serif"
+headingFontWeights = 700
+baseRadius = "small"
+borderColor = "#d9e1f2"
+showWidgetBorder = true
+showSidebarBorder = true
+dataframeHeaderBackgroundColor = "#e6ecf7"
+
+[theme.sidebar]
+backgroundColor = "#f3f6fc"
+secondaryBackgroundColor = "#ffffff"
