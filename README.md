@@ -1,5 +1,7 @@
 # Policy Evidence Explorer
 
+**Live demo:** [policy-evidence-explorer.streamlit.app](https://policy-evidence-explorer.streamlit.app) (synthetic data; may take about 30 seconds to start)
+
 A Business Analysis case study, with a small working prototype, on how findings from several EU-funded research projects could be explored, compared and traced to their sources for evidence-informed policy work.
 
 > **Independent, illustrative proof of concept** prepared by Jan Phillip Thoma for the practical assignment of selection procedure EC/2026/RTD/521000 (Business Analyst – Feedback to Policy Data and AI Services, RTD.H5). It is not a European Commission service, and all research projects and findings in it are **synthetic**.
