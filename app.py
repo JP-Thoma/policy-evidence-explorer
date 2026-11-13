@@ -235,9 +235,9 @@ if evidence.empty:
 for key, value in FILTER_DEFAULTS.items():
     st.session_state.setdefault(key, list(value) if isinstance(value, list) else value)
 
-# --- A. Policy topic selection (BR-01, FR-01, FR-02) --------------------------
+# --- A. Policy topic selection and filters (FR-08, FR-01, FR-02) -------------
 
-section_heading("1. Policy topic")
+section_heading("1. Policy Topic")
 
 # Topic order follows the projects file; options come from the data, not the code.
 available_topics = set(evidence["policy_topic"])
@@ -253,7 +253,7 @@ project_titles = (
 )
 
 with st.sidebar:
-    st.markdown("### Refine the selection")
+    st.markdown("### Refine the Selection")
     st.caption(f"Filters apply within the selected topic: **{topic}**. Leave a filter empty to include all.")
 
     # Options are derived from the data, so new themes or projects need no code changes.
@@ -321,7 +321,7 @@ topic_panel.html(f'<div class="pee-filters">{filter_html}</div>')
 # --- B. Evidence overview -----------------------------------------------------
 
 section_heading(
-    "2. Evidence overview",
+    "2. Evidence Overview",
     "Counts from the currently filtered synthetic dataset. They describe dataset coverage, "
     "not the strength or volume of real-world evidence.",
 )
@@ -341,7 +341,7 @@ if not filtered.empty:
 # --- C. Findings explorer -----------------------------------------------------
 
 section_heading(
-    "3. Findings explorer",
+    "3. Findings Explorer",
     "Findings are shown as reported by the (synthetic) source. Interpretation remains with the reader.",
 )
 

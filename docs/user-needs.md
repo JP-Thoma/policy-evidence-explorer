@@ -1,90 +1,93 @@
-# User needs and requirements elicitation approach
+# User needs and requirements elicitation
 
-This document describes how user needs for the Policy Evidence Explorer **would be** gathered and validated. No interviews, workshops or user tests have been carried out. All needs and requirements in this repository are provisional working hypotheses.
+**Question this document answers:** how would the initial business request be turned into validated, prioritised requirements, and what is currently known, assumed or still open?
 
-## 1. Starting point: what is known, assumed and open
+No interviews, workshops or user tests have taken place. Everything below is a proposed method and a set of working hypotheses.
 
-| Type | Content |
+## 1. Known, assumed and to be validated
+
+| Status | Content |
 |---|---|
-| **Known from the role context** | DG RTD's Common Knowledge and Data Management Service supports Feedback to Policy (F2P) activities that channel evidence from EU-funded research into policy development and research programming. Research results are spread across many projects, deliverables, publications and datasets in different formats. |
-| **Working assumptions** | Policy officers preparing briefings need to identify, compare and verify findings from several projects within limited time. They value traceability to sources more than automated summaries. A structured, curated dataset of findings could be produced for at least one pilot topic. Policy officers remain responsible for interpretation and drafting. |
-| **Questions requiring user validation** | Which policy tasks are most frequent and time-critical? How is evidence currently gathered and by whom? What level of granularity (project, deliverable, individual finding) is useful? Which sources are accessible and under what conditions? What would make users trust, or distrust, such a service? What does success look like for each stakeholder group? |
+| **Known from the role and assignment** | DG RTD's Common Knowledge and Data Management Service (RTD.H5) supports Feedback to Policy (F2P), which aims to make evidence from EU-funded research and other sources usable in policy development and research programming. Research results are spread across many projects, deliverables, publications and datasets, in different formats and levels of detail. |
+| **Assumed for the illustrative case** | A policy officer preparing a briefing needs to compare findings across several projects. Being able to trace each finding to its source matters more to this user than an automated summary. A curated collection of findings for one topic could be assembled with reasonable effort. The officer remains responsible for interpretation and drafting. |
+| **To be validated** | Actual user tasks and their frequency; current workflow, tools and hand-offs; pain points and where time is lost; user groups and decision rights; which sources are available and under what conditions; the level of detail users need; constraints (time, access, confidentiality, existing platforms); user preferences on format and AI support; and what success would look like for each stakeholder group. |
 
-The illustrative use case (a policy officer preparing a briefing on urban climate adaptation) is an assumption chosen to make the concept concrete. It is not a confirmed requirement.
+The assumptions are deliberately narrow. If elicitation shows that the main problem lies elsewhere (for example, in finding projects rather than comparing findings), the concept and requirements would change accordingly.
 
 ## 2. Stakeholders
 
-The roles below are proposed. Actual roles, responsibilities and decision rights would need to be confirmed with DG RTD.
+The roles below are proposed. Actual roles, responsibilities and decision rights would need to be confirmed with RTD.H5 and the policy units involved.
 
-| Stakeholder | Assumed interest | Proposed involvement |
+| Stakeholder | Assumed interest | Proposed involvement | To confirm |
+|---|---|---|---|
+| **Policy officers** (primary users) | Finding relevant, reliable and traceable evidence within tight deadlines. | Interviews, task observation, prototype sessions, pilot use. | Which units and tasks; time available to take part. |
+| **F2P representatives and coordinators** | Making project results visible and usable in policy; consistency across F2P services. | Interviews, requirements workshop, prioritisation. | Who can act as business-side product owner. |
+| **Data and AI service teams** | Feasibility, reuse of existing platforms and data, maintainability. | Feasibility sessions, data assessment, pilot design. | Existing tools and data pipelines that could be reused. |
+| **Data owners and governance stakeholders** (e.g. data stewards, information management, data protection, legal) | Lawful and appropriate use of data; access rights; confidentiality of non-public deliverables; data quality. | Early consultation on access, reuse conditions and metadata. | Access rules per source; approval steps. |
+| **Subject-matter experts** (e.g. scientific or project officers) | Faithful representation of research results and their limitations. | Curation and review of findings during the pilot. | Capacity and willingness to curate. |
+
+## 3. Elicitation plan: activities and their outputs
+
+Each activity is chosen for the specific output it produces. Together they move from understanding the problem to agreeing testable requirements.
+
+| Activity | Participants | Purpose | Output |
+|---|---|---|---|
+| **1. Stakeholder interviews** (semi-structured, 45-60 min) | 4-6 policy officers; F2P coordinators; one data/governance contact | Understand tasks, pain points, expectations and constraints. | Interview notes; list of user needs with source; first view of priorities and constraints. |
+| **2. Current workflow walkthrough** | Policy officer and supporting colleagues | Map how evidence is currently found, checked and used for one or two recent outputs. | Process map ("as-is"), hand-offs, bottlenecks, tools and sources used. |
+| **3. Representative task observation** | 2-3 policy officers | Observe (or reconstruct) preparation of a briefing on a defined topic. | Concrete evidence needs, usability requirements, and a **baseline** of time and effort for later comparison. |
+| **4. Requirements workshop** | Policy officers, F2P coordinators, data teams, governance contacts | Review the draft catalogue; confirm, amend or reject each requirement; agree priorities and acceptance criteria. | Prioritised requirements with agreed acceptance criteria; decision records; open issues. |
+| **5. Prototype-based feedback** | Policy officers (and later pilot users) | Test the concept on defined tasks, first with synthetic data, then with real data. | Usability observations; refined or new requirements; evidence for or against the concept. |
+
+Activities 1-3 can run in parallel over a few weeks. The workshop (4) follows once needs have been consolidated. Prototype sessions (5) can start early, because a concrete demonstrator usually produces more specific feedback than abstract questions.
+
+## 4. Core elicitation questions
+
+A short guide; interviews would follow the conversation rather than a script.
+
+| Area | Example questions |
+|---|---|
+| **Policy task and decision context** | Which outputs do you prepare that rely on research evidence? Who uses them, and for what decision? How much time do you usually have? |
+| **Current workflow and pain points** | How do you find evidence from EU-funded projects today? Which step takes longest? Can you describe a time when relevant evidence was missed or found too late? |
+| **Evidence and information needs** | What level of detail do you need: projects, individual findings, data or full reports? Which attributes of a finding matter most (method, location, scale, date, limitations)? |
+| **Outputs and usability** | What would a useful evidence overview look like for you? How would you reuse it in your drafting? |
+| **Data availability and constraints** | Which sources must be covered for the service to be useful? Are relevant documents restricted? Who could curate and check findings? |
+| **Quality, trust and governance** | What would you need to see before relying on a finding? How should conflicting evidence be shown? What safeguards would you expect from any AI support? |
+| **Success criteria** | What would convince you that the service saves time or improves quality? What would make you stop using it? |
+
+## 5. From elicitation to agreed requirements
+
+The Business Analyst would manage the catalogue in [requirements/requirements.csv](../requirements/requirements.csv) as follows.
+
+- **Document findings.** Record each need with its source (activity, role, date) in interview notes and a needs log. Keep users' statements separate from the analyst's interpretation.
+- **Trace.** Link every requirement to at least one recorded need, and later to the pilot feature and evaluation activity that tests it. Requirements without a traceable need are questioned or removed.
+- **Resolve conflicts.** Where needs conflict (for example, broad coverage versus verified quality), make the trade-off explicit, set out options with their consequences, and ask the business-side product owner to decide. Record the decision and rationale.
+- **Confirm priorities.** Use MoSCoW in the workshop. A requirement is a *Must* only if the pilot would fail its purpose without it, not because it is easy to build or already exists in the prototype.
+- **Update validation status.** Change the status from *Provisional* to *Validated*, *Amended* or *Rejected* only with a recorded decision.
+- **Manage change.** After the workshop, the catalogue is baselined. Later changes are proposed, assessed for impact on scope and evaluation, approved by the product owner and recorded in a change log.
+
+### Proposed decision record format
+
+The CSV catalogue intentionally stays simple. In a real project, each validation decision would be recorded separately in a format such as the one below. **This is a template, not a completed record**; no such decision has been taken.
+
+| Field | Content |
+|---|---|
+| Requirement | FR-07 - export of selected evidence |
+| Source of need | [interview / workshop reference and date] |
+| Stakeholders consulted | [roles] |
+| Date of decision | [date] |
+| Decision | [Validated / Amended / Rejected] |
+| Rationale | [summary of reasons] |
+| Priority | [previous] -> [agreed] |
+| Agreed acceptance criterion | [final wording] |
+| Follow-up | [open issues, owner] |
+
+## 6. Catalogue revision history
+
+These changes were made by the author during desk review. They are **not** stakeholder decisions.
+
+| Version | Change | Reason |
 |---|---|---|
-| **Policy officers** (primary users) | Finding relevant, reliable and traceable evidence quickly for briefings and policy input. | Interviews, task walkthroughs, prototype feedback, usability testing. |
-| **F2P representatives and coordinators** | Making project results more visible and usable in policy; consistency of F2P services. | Interviews, validation workshop, prioritisation of requirements. |
-| **Data and AI service teams** | Feasibility, data pipelines, reuse of existing platforms and tools, maintainability. | Technical feasibility sessions, data availability assessment, pilot design. |
-| **Data owners and governance stakeholders** (e.g. data stewards, information management, data protection, legal) | Lawful and appropriate use of data; access rights; confidentiality of non-public deliverables; data quality. | Early consultation on access and confidentiality; review of governance requirements. |
-| **Subject-matter experts** (possible secondary stakeholders, e.g. scientific officers) | Correct representation of research results and their limitations. | Review of curated findings and comparison views during the pilot. |
-
-## 3. Proposed engagement methods
-
-1. **Initial stakeholder interviews** (semi-structured, 45-60 minutes) with a small number of policy officers and F2P coordinators, to understand tasks, pain points and expectations.
-2. **Review of the current evidence workflow**: map how evidence is currently found, assessed and used for one or two recent policy outputs, including tools, sources, hand-offs and time spent.
-3. **Walkthrough of a representative policy task**: observe or reconstruct how a policy officer would prepare a briefing on a defined topic, noting where evidence is hard to find, compare or verify.
-4. **Requirements validation workshop**: present the provisional requirements catalogue ([requirements/requirements.csv](../requirements/requirements.csv)), confirm or reject each requirement, agree priorities (MoSCoW) and acceptance criteria.
-5. **Prototype-based user feedback**: use this prototype (and later a version with real data) in short sessions where users complete defined tasks and comment on usefulness, clarity and trust.
-
-Findings from each step would be recorded, and the requirements catalogue updated with a changed `validation_status` and a note of the source of validation.
-
-## 4. Elicitation questions
-
-### 4.1 Policy task and decision context
-- Which policy outputs do you prepare that rely on research evidence (briefings, impact assessments, programme design, speeches)?
-- How often do you prepare them, and how much time do you typically have?
-- Who uses your output, and what decisions does it inform?
-- Can you describe a recent task where research evidence was important?
-
-### 4.2 Current workflow and pain points
-- How do you currently find evidence from EU-funded projects? Which tools, databases or colleagues do you rely on?
-- Which steps take the most time?
-- Have you ever missed relevant evidence or found it too late? What happened?
-- How do you compare results from different projects today?
-
-### 4.3 Evidence and information needs
-- What level of detail is useful to you: project summaries, individual findings, data, or full reports?
-- Which attributes of a finding matter most (method, location, scale, date, evidence type, limitations)?
-- How important is it to see agreements and disagreements between projects?
-- Do you also need evidence from non-EU-funded or external sources?
-
-### 4.4 Expected outputs and usability
-- What would an ideal evidence overview look like for you? Could you sketch or describe one?
-- In which format would you reuse the results (table, short text, export to a document)?
-- What would make a tool too complicated to use in your daily work?
-- Would you use such a service on your own, or with support from F2P or data teams?
-
-### 4.5 Data availability and constraints
-- Which sources would need to be covered for the service to be useful?
-- Are some relevant documents non-public or restricted? Who decides on access?
-- Who could curate or check findings, and with what effort?
-- Are existing classifications or taxonomies available for topics and themes?
-
-### 4.6 Quality, trust and governance
-- What would you need to see before relying on a finding in your work?
-- How should limitations or conflicting evidence be presented?
-- How would you feel about AI-generated summaries or classifications? What safeguards would you expect?
-- Who should be accountable for the content of the evidence base?
-
-### 4.7 Success criteria
-- What would convince you that the service saves time or improves quality?
-- How could we measure whether a pilot has succeeded?
-- What would make you stop using the service?
-
-## 5. From needs to requirements
-
-Each user need captured during elicitation is translated into one or more requirements with:
-
-- a unique identifier and category (Business, Functional, Data, Non-functional);
-- a MoSCoW priority agreed with stakeholders;
-- an observable, testable acceptance criterion;
-- a validation status (initially *Provisional - requires user confirmation*);
-- a note of whether and how the prototype covers it.
-
-The current catalogue in [requirements/requirements.csv](../requirements/requirements.csv) is a first draft based on the working assumptions above. The prototype is intended as a tool to test these assumptions with users, not as evidence that the requirements are correct.
+| 0.2 | BR-01 reframed as a business objective (a reviewable, multi-project evidence overview); topic selection moved to new **FR-08**. | Topic selection is functional behaviour, not a business outcome. |
+| 0.2 | Former NFR-03 (AI-assisted extraction, classification or synthesis) reclassified as **FR-09**; NFR-03 retired and not reused. | It describes future functionality, not a quality attribute. |
+| 0.2 | FR-02 (filters) priority changed from Must to Should. | Grouping by theme (FR-03) delivers the core value on a small pilot corpus; filters become more important as it grows. |
+| 0.2 | FR-04, DR-01 and DR-03 reworded. | Separates metadata completeness, synthetic provenance and real-world source verification. |
