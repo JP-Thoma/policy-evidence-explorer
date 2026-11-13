@@ -1,78 +1,111 @@
-# Implementation approach and risks
+# Implementation, data readiness and risks
 
-This document outlines a pragmatic path from the current concept and prototype to a pilot and, if justified, a production service. It is a proposal for discussion, not a plan agreed with stakeholders.
+**Question this document answers:** how would the concept move from a prototype to a bounded real-data pilot and, if justified, wider use; what must the data look like; where might AI add value; and what could go wrong?
 
-## 1. Progression overview
+## 1. Implementation sequence
 
-| Phase | Purpose | Main output |
-|---|---|---|
-| **Concept and prototype** (current) | Make the service idea and provisional requirements concrete enough to discuss with users. | This repository: synthetic data, prototype, provisional requirements. |
-| **Discovery and validation** | Confirm the problem, users, requirements and data availability. | Validated requirements, workflow map, data feasibility assessment. |
-| **Pilot** | Test the service with real data on one topic and a small user group. | Curated dataset for one topic, pilot application, evaluation report. |
-| **Production (if justified)** | Run a maintained service integrated with existing systems and governance. | Operational service, documented processes, ownership and support. |
+Each phase ends with a decision, so that effort is only committed once the previous step has produced evidence.
 
-## 2. Key activities
+| Phase | Purpose | Main output | Decision at the end |
+|---|---|---|---|
+| **1. Concept and provisional requirements** (current) | Make the idea concrete enough to discuss with users. | This repository: concept, provisional catalogue, synthetic prototype. | Is the problem worth investigating with stakeholders? |
+| **2. Stakeholder discovery and requirements validation** | Confirm users, tasks, pain points and priorities. | Validated requirements, as-is process map, task baseline, decision records. | Is the assumed need real, and for whom? |
+| **3. Data feasibility and source assessment** | Check whether sources for one topic are available, accessible and reusable. | Source inventory, access conditions, data-readiness assessment (section 4), curation effort estimate from a small sample. | Can a reliable evidence base be built within constraints? |
+| **4. Bounded real-data pilot** | Test the service with real data and real users. | Curated dataset for one topic, pilot application, user guidance. | - |
+| **5. Evaluation and decision** | Assess relevance, fidelity, efficiency, usability, feasibility and adoption. | Evaluation report against agreed thresholds ([concept-and-validation.md, section 7](concept-and-validation.md#7-pilot-evaluation-framework)). | GO / REVISE / STOP |
+| **6. Wider implementation, if justified** | Extend to further topics and integrate with existing systems. | Operational service with owner, processes and support. | Ongoing review |
 
-### User engagement
-Involve a small, committed group of policy officers and F2P coordinators from the start. Use short, task-focused sessions to respect their time. Report back what was changed as a result of their input.
+## 2. Proposed pilot scope
 
-### Requirements validation
-Review the provisional catalogue in a workshop; record decisions and update `validation_status`. Keep acceptance criteria testable and link each to a pilot evaluation activity.
+**One policy topic with several relevant themes.** The prototype contains two synthetic topics to show that the design is not tied to a single subject; the first real-data pilot would deliberately narrow the scope to one.
 
-### Data availability and quality assessment
-For the pilot topic, identify candidate sources, check access conditions and assess metadata quality. Curate a sample of findings and measure effort and consistency between curators before committing to a full topic.
+The pilot would include:
 
-### Pilot scope
-One policy topic, a limited number of projects (for example 20-40) and a small user group. Read-only access to curated findings. No automated extraction in the first iteration, so that a reliable expert-curated baseline exists.
+- a limited corpus of real project outputs, selected against documented criteria;
+- findings curated by subject-matter experts against an agreed schema;
+- working, document-level source references;
+- a small group of representative policy users and a defined briefing task;
+- agreed review responsibilities (see [concept-and-validation.md, section 6](concept-and-validation.md#6-human-review-points));
+- a manageable evaluation plan with thresholds agreed in advance.
 
-### Roles and expertise
+Advanced AI is **not** a prerequisite. The pilot tests whether a reliable evidence base is useful and feasible; that question has to be answered first.
+
+## 3. Roles
+
 | Role | Contribution |
 |---|---|
-| Business Analyst | Elicitation, requirements, process mapping, evaluation design, stakeholder communication. |
-| Product owner (business side) | Prioritisation and acceptance decisions. |
-| Subject-matter experts / curators | Extraction and verification of findings, theme definitions. |
-| Data engineer / developer | Data model, pipeline, application. |
-| Data governance and legal contacts | Access, confidentiality, data protection, retention. |
-| AI specialist (later phase) | Evaluation of AI-assisted methods against the curated baseline. |
+| **Business Analyst** | Elicitation, process mapping, requirements and traceability, evaluation design, stakeholder communication. |
+| **Business-side product owner** | Prioritisation, acceptance decisions and the GO / REVISE / STOP decision. |
+| **Policy officers** | Define the pilot task, use the service, provide feedback. |
+| **F2P representatives** | Link to F2P processes, help select the topic and engage users. |
+| **Evidence curators / subject-matter experts** | Select sources, extract and check findings, define themes. |
+| **Data engineer / developer** | Data model, quality checks, application and integration. |
+| **Data governance and legal stakeholders** | Access, confidentiality, reuse conditions, data protection. |
+| **AI specialist** (only if later justified) | Evaluate AI options against the curated reference data. |
 
-### Evaluation
-Task-based user sessions, a sample accuracy check of findings against sources, measurement of curation effort, and a short user questionnaire. Compare results against success indicators agreed at the start of the pilot.
+How these roles map onto actual Commission staff and teams would need to be agreed.
 
-### Documentation and governance
-Document the data model, controlled vocabulary, curation guidelines, provenance of each record, access rules and change history. Define ownership of the dataset and the process for corrections.
+## 4. Data readiness for a real-data pilot (FAIR-oriented)
 
-### Adoption
-Integrate into existing ways of working rather than adding another standalone tool where possible. Provide short guidance, identify early adopters and collect feedback continuously.
+The synthetic prototype is **not** FAIR-compliant and does not claim to be. The assessment below sets out what a credible real-data pilot would need, using the FAIR principles (Findable, Accessible, Interoperable, Reusable) as a practical checklist.
 
-### Production considerations
-Hosting on approved infrastructure, authentication and access control, integration with existing research and document repositories, accessibility, maintenance and support model, monitoring of usage and data freshness, and a sustainable curation process.
+| Principle | What the pilot would need | Prototype today | Gap to close |
+|---|---|---|---|
+| **Findable** | Persistent project and document identifiers; descriptive metadata; consistent references down to section or page. | Stable synthetic IDs (`SYN-P..`, `SYN-F..`, `SYN-SRC-..`); document titles. | Real identifiers; section-level references. |
+| **Accessible** | Working links; clear distinction between public and restricted material; recorded access conditions and permissions. | No links; all data synthetic and public. | Links; access conditions per source; access control (NFR-01). |
+| **Interoperable** | Common metadata fields; controlled vocabularies for topics, themes and evidence types; standard formats; alignment with existing classifications where available. | Consistent fields in CSV; theme and evidence-type values not governed by a vocabulary. | Agreed vocabularies and schema (DR-02). |
+| **Reusable** | Provenance; methodological context; known limitations; licence and reuse conditions; curation and review history. | Evidence type and caveat per finding; "synthetic" status label. | Licence, curator, review date, verification status, methodological context. |
 
-## 3. Risks and mitigations
+**Metadata in the prototype:** project ID, title, topic, description, research area; finding ID, project link, title, description, topic, theme, evidence type, limitation, source document, source reference, data status.
+
+**Additional metadata a pilot would need:** research setting; geographic context; study period; methodology; precise document and section reference; document access conditions; licence or reuse conditions; curator; review date; verification status. These fields are deliberately **not** added to the synthetic dataset; they are pilot design requirements (DR-02, DR-03).
+
+## 5. Data and AI approach
+
+### Where conventional methods are sufficient
+
+The prototype uses structured fields, exact-match filtering, keyword search, grouping, cross-tabulation, data quality checks and CSV export. For a pilot on one topic with a curated corpus of modest size, these methods are likely to meet the core needs: users choose from known themes, the corpus can be browsed, and the main risk lies in data quality, not retrieval.
+
+### Where AI might add value later (FR-09)
+
+| Capability | Problem it might address | Potential benefit | Data prerequisites | Main risks | Human review and evaluation |
+|---|---|---|---|---|---|
+| **Semantic retrieval** | Relevant findings are missed because projects use different terms. | Better recall as the corpus grows. | Curated findings with consistent metadata. | Opaque relevance; false confidence in completeness. | Users judge relevance; compare recall against curated test queries. |
+| **Thematic classification** | Assigning themes to many new findings is slow and inconsistent. | Faster, more consistent curation. | Agreed vocabulary; labelled examples. | Misclassification distorts comparisons. | Curators confirm every suggestion; measure agreement with expert labels. |
+| **Candidate finding extraction** | Long reports make manual extraction costly. | Reduced curation effort. | Machine-readable documents; access rights; expert-curated reference sample. | Omissions; misstatements; findings taken out of context. | Curators verify each candidate; compare with expert extraction for omissions and errors. |
+| **Source-grounded synthesis** | Users want a quick view of how findings compare. | Faster orientation across many projects. | Verified findings with section-level references. | Overgeneralisation; blurring of finding and interpretation; inaccurate citations. | Clearly labelled as generated; every statement cites sources; checked for citation accuracy. |
+
+The order of these capabilities reflects increasing risk. A reliable data foundation and a verified user need are prerequisites for deciding where AI adds value; AI should not be introduced simply because it is technically possible. Any AI component would also need approved tools and infrastructure and compliance with applicable Commission rules and EU legislation on data protection and AI.
+
+## 6. Governance and documentation
+
+- Publish the data model, controlled vocabularies, curation guidelines and coverage criteria with the dataset.
+- Record provenance and review history for each finding.
+- Agree ownership of the evidence base and a process for reporting and correcting errors.
+- Keep the requirements catalogue, decision records and change log up to date (see [user-needs.md](user-needs.md)).
+
+## 7. Adoption
+
+- **Fit with existing work:** design around a real briefing task identified in discovery, and link to existing tools rather than adding a separate destination where possible.
+- **Early involvement:** involve the same small group of policy officers from discovery to pilot, so that they recognise their input.
+- **Guidance:** short user guidance explaining what the overview is (a starting point) and what it is not (a verified conclusion).
+- **Feedback:** a simple channel for reporting errors and requesting sources, reviewed regularly.
+- **Ownership and maintenance:** a named service owner, and an agreed process and resourcing for adding and updating findings.
+
+## 8. Considerations for wider implementation
+
+Hosting on approved infrastructure; authentication and access control; integration with existing research and document repositories; accessibility; support model; monitoring of usage and data currency; and sustainable curation capacity. These would be scoped only after a GO decision.
+
+## 9. Risks and mitigations
 
 | Risk | Possible impact | Mitigation |
 |---|---|---|
-| **Incomplete source coverage** | Users assume the overview is complete and miss relevant evidence. | Publish coverage criteria and date of last update with the dataset; show counts as dataset counts; state clearly what is not covered. |
-| **Poor or inconsistent metadata** | Filters and comparisons give misleading results. | Agree a metadata schema and controlled vocabulary; run automated quality checks; double-curate a sample to measure consistency. |
-| **Misinterpretation of research findings** | Findings are used out of context or overstated in policy documents. | Display evidence type and caveats with every finding; use cautious wording; involve subject-matter experts in curation; keep the human review step explicit. |
-| **Weak source traceability** | Findings cannot be verified, undermining trust. | Make a document-level reference mandatory; exclude records without one (as in the prototype); test link validity regularly. |
-| **Biased selection of evidence** | Overview favours certain projects, methods or viewpoints. | Document selection criteria; show where themes have little or no coverage; review dataset composition with experts; allow users to see all findings, not only a summary. |
-| **Confidentiality or access issues** | Non-public material is exposed or cannot be used. | Consult data owners early; record access conditions per source; apply access control in pilot and production; start the pilot with public material if needed. |
-| **Automation bias** | Users rely on the tool's presentation instead of checking sources. | Present the overview as a starting point; require source verification in guidance; avoid scores or rankings that imply quality judgements. |
-| **AI-generated inaccuracies (future version)** | Extracted or summarised content misstates or invents findings. | Ground any output in cited source passages; label AI-generated content clearly; evaluate against the curated baseline before use; keep human review of all AI-extracted findings. |
-
-## 4. AI as a possible future enhancement
-
-The current prototype does **not** use AI. All functions use conventional data handling: structured fields, filtering, grouping and keyword search.
-
-AI methods could be considered later, once a validated, expert-curated dataset exists against which they can be evaluated:
-
-| Possible AI use | Potential benefit | Main caution |
-|---|---|---|
-| **Semantic retrieval** | Find relevant findings even when different terms are used. | Results must still be traceable and explainable; relevance should be checked by users. |
-| **Thematic classification** | Suggest themes for new findings to reduce curation effort. | Suggestions should be reviewed by curators; classification errors propagate into comparisons. |
-| **Extraction of candidate findings** | Propose findings from long project reports. | High risk of omission or misstatement; human verification is essential. |
-| **Source-grounded synthesis** | Draft short summaries of what several findings say, with citations. | Risk of overgeneralisation and of blurring findings and interpretation; must cite sources and be labelled as generated. |
-
-**Where conventional methods remain sufficient:** filtering by agreed metadata, counting and cross-tabulation, keyword search over a modest dataset, data quality checks and export. For a pilot with one topic and a curated dataset, these methods are likely to meet the core needs. AI is most likely to add value in scaling the curation process, which is also where its risks are highest.
-
-Any AI component would need to use approved tools and infrastructure, comply with applicable Commission rules and EU legislation on data protection and AI, and be evaluated with measurable acceptance criteria before use.
+| **Incomplete source coverage** | Users assume the overview is complete and miss evidence. | Publish coverage criteria and last update date; label counts as dataset coverage (as the prototype does); show themes with little coverage. |
+| **Poor or inconsistent metadata** | Filters and comparisons mislead. | Agreed schema and vocabularies; automated checks; double-curate a sample to measure consistency. |
+| **Misinterpretation of findings** | Findings are used out of context or overstated. | Show evidence type and caveats with every finding; involve experts in curation; keep the officer's review step explicit in guidance. |
+| **Weak source traceability** | Findings cannot be verified, undermining trust. | Make section-level references mandatory; exclude records without them (as the prototype does); test links regularly. |
+| **Biased selection of evidence** | The overview favours certain projects, methods or viewpoints. | Documented selection criteria; expert review of dataset composition; show all findings, not only a summary. |
+| **Confidentiality or access issues** | Restricted material is exposed, or cannot be used. | Consult data owners early; record access conditions per source; start with public material if needed. |
+| **Automation bias** | Users rely on the presentation instead of checking sources. | Present the overview as a starting point; require source checks in guidance; avoid scores or rankings that imply quality judgements. |
+| **AI-generated inaccuracies (future)** | Extracted or synthesised content misstates or invents findings. | Ground outputs in cited passages; label generated content; evaluate against curated reference data before use; human review of all AI output. |
+| **Insufficient user or curator time** | Pilot cannot be run or evaluated properly. | Agree time commitments with management before the pilot; keep sessions short and task-based. |
